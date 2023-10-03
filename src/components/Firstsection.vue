@@ -3,17 +3,15 @@
 </script>
  
 <template>
-  <section>
-    <div class="bg-black w-full text-white">
-    <div class="flex items-center justify-center h-screen flex-col" >
-      <h1 class="text-[164px] font-modern ">ม.๑๑๒</h1>
-      <p class="text-white text-[18px]">“ผู้ใดหมิ่นประมาท ดูหมิ่น หรือแสดงความอาฆาตมาดร้าย พระมหากษัตริย์ พระราชินี
-        รัชทายาท
+
+    <div class="bg-black w-full text-white font-modern flex items-center justify-center h-screen">
+      <div class="text-center p-10">
+        <h1 class="xl:text-[164px] text-[100px]">ม.๑๑๒</h1>
+        <p class="xl:text-[30px] text-[22px]">“ผู้ใดหมิ่นประมาท ดูหมิ่น หรือแสดงความอาฆาตมาดร้าย พระมหากษัตริย์ พระราชินี
+        รัชทายาท <span class="inline-block xl:block">หรือผู้สำเร็จราชการแทนพระองค์ ต้องระวางโทษจำคุกตั้งแต่สามปีถึงสิบห้าปี”</span>
       </p>
-      <p class="text-white text-[18px]">หรือผู้สำเร็จราชการแทนพระองค์ ต้องระวางโทษจำคุกตั้งแต่สามปีถึงสิบห้าปี”</p>
-    </div>
+      </div>
   </div>
-  </section>
 </template>
  
 <style scoped></style>

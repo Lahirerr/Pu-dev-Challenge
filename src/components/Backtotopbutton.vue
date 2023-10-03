@@ -5,6 +5,10 @@ const props = defineProps({
   isNotFirstSection: Boolean,
 });
 
+const refs = {
+  sections: ref(),
+};
+
 const backtoTop = () => {
   if (props.isNotFirstSection) {
     window.scrollTo({

@@ -6,8 +6,9 @@ import Backtotopbutton from './components/Backtotopbutton.vue';
 import Thirdsection from './components/Thirdsection.vue';
 import Footerpage from './components/Footerpage.vue';
 
-
 const isNotFirstSection = ref(false);
+
+
 
 const handleScroll = () => {
   const sections = document.querySelector('.sections');
@@ -19,23 +20,28 @@ const handleScroll = () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll);
 });
 
-
-
 </script>
 
 
 <template>
+    <div class="min-w-full min-h-screen ">
     <Firstsection/>
     <Secondsection class="sections"/>
     <Thirdsection class="sections"/>
     <Footerpage class="sections"/>
     <Backtotopbutton :isNotFirstSection="isNotFirstSection"/>
+    </div>
+    
 </template>
 <style scoped>  
 </style>

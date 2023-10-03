@@ -3,9 +3,8 @@
  </script>
   
   <template>
-    <div class="bg-black w-full h-screen text-white flex justify-center"> 
+    <div class="bg-black w-full h-full text-white flex justify-center"> 
       <div class="w-3/4 p-7 text-left space-y-10 flex flex-col"> 
-
         <div class="w-2/4 self-start"> 
           <p class="font-bold font-modern text-6xl">ความเห็นนักวิชาการ</p>
           <p class="text-2xl font-modern pt-10">
