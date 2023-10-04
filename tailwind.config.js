@@ -9,6 +9,7 @@ module.exports = {
       fontFamily: {
         'sarun': ['Sarun'],
         'modern':['Modern'],
+        'market':['Market'],
     },
     },
   },

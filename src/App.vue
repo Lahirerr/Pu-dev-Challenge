@@ -28,6 +28,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll);
+  
 });
 
 </script>
@@ -36,7 +37,7 @@ onBeforeUnmount(() => {
 <template>
     <div class="min-w-full min-h-screen ">
     <Firstsection/>
-    <Secondsection class="sections"/>
+    <Secondsection class="sections" :isNotFirstSection="isNotFirstSection"/>
     <Thirdsection class="sections"/>
     <Footerpage class="sections"/>
     <Backtotopbutton :isNotFirstSection="isNotFirstSection"/>

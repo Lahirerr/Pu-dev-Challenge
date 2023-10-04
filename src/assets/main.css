@@ -13,3 +13,9 @@
     src: url(/SB-Modern.ttf) format("truetype");
 }
 
+@font-face {
+    font-family: "Market";
+    /*noinspection CssUnknownTarget*/
+    src: url(/supermarket.ttf) format("truetype");
+}
+

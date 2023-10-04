@@ -1,10 +1,16 @@
 <script setup>
 import Papa from 'papaparse';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted,onUpdated } from 'vue';
 import Chart from 'chart.js/auto';
 const data = './112-cases-by-year.csv';
 const chartData = ref({});
+// const myChart = ref('');
+const props = defineProps({
+  isNotFirstSection: Boolean,
+});
 
+
+let myChart = null;
 const fetchCsv = async () => {
   const response = await fetch(data);
   const csv = await response.text();
@@ -16,7 +22,7 @@ const fetchCsv = async () => {
     datasets: [
       {
         data: parsedCsvDataMod.map(row => row[1]),
-        label: null,
+        label: '',
         backgroundColor: 'rgb(0,0,0)',
         borderColor: 'rgb(0,0,0)',
         borderWidth: 1,
@@ -25,10 +31,16 @@ const fetchCsv = async () => {
   };
   console.log(chartData.value);
   const ctx = document.getElementById('myChart')
-  const myChart = new Chart(ctx, {
+  if(myChart !== null){
+    myChart.destroy();
+  }
+   myChart = new Chart(ctx, {
     type: 'bar',
     data: chartData.value,
     options: {
+      animation: {
+        duration: 2000,
+      },
       maintainAspectRatio: false,
       plugins: {
         legend: {
@@ -38,7 +50,7 @@ const fetchCsv = async () => {
       title: {
       font: {
         size: 25,
-        family: 'Modern',
+        family: 'Market',
       },
     },
       scales: {
@@ -60,39 +72,23 @@ const fetchCsv = async () => {
       },
     },
 })
-  console.log("teststs");
+
 };
 
 
-onMounted(() => {
-  fetchCsv();
+onUpdated(() => {
+  if(props.isNotFirstSection){
+    fetchCsv();
+  }
+  else{
+    fetchCsv();
+  }
 });
 
 
-onresize = () => {
-  responsiveFont();
-};
 
-const responsiveFont = () => {
-  // if (window.outerWidth > 999) {
-  //   Chart.defaults.scales.x.title.fontSize = 12;
-  //   Chart.defaults.scales.y.title.fontSize = 12;
-  //   Chart.defaults.font.family = 'Modern';
-  // }
-  // if (window.outerWidth < 999 && window.outerWidth > 500) {
-  //   Chart.defaults.font.size = 5;
-  //   Chart.defaults.font.family = 'Modern';
-  // }
-  // if (window.outerWidth < 500) {
-  //   Chart.defaults.font.size = 8;
-  //   Chart.defaults.font.family = 'Modern';
-  // }
-  // console.log(window.outerWidth);
-  if (window.outerWidth < 700) {
-    Chart.defaults.scales.x.title.font.size = 12;
-    Chart.defaults.scales.y.title.font.size = 12;
-  }
-};
+
+
 
 </script>
  
@@ -100,14 +96,14 @@ const responsiveFont = () => {
     <section>
         <div class="bg-white xl:w-full xl:h-screen flex items-center justify-center h-screen" >
         <div class="flex items-center flex-col">
-            <div class="flex flex-col font-modern text-black p-10 ">
-                <h1 class="xl:text-7xl text-5xl font-modern font-bold text-center">จำนวณคดีที่เกิดขึ้น</h1>
-                <p class="xl:text-2xl text-xl text-left"> <span class="xl:inline-block block">มาตรา 112</span> มีการตีความการกระทำอย่างไร้ขอบเขต
+            <div class="flex flex-col info font-market text-black space-y-5 p-5">
+                <h1 class="xl:text-7xl text-5xl font-market font-bold">จำนวณคดีที่เกิดขึ้น</h1>
+                <p class="xl:text-2xl text-xl"> <span class="xl:inline-block block">มาตรา 112</span> มีการตีความการกระทำอย่างไร้ขอบเขต
                     แต่ทุกคนสามารถผู้กล่าวโทษให้ดำเนินคดีได้
                     <br>จึงมีการกล่าวหากันเป็นจำนวนมากในช่วงที่มีความขัดแย้งทางการเมืองหลังจากปี 2548 เป็นต้นมา
                 </p>
             </div>
-            <div class="chartBox xl:w-[1000px] xl:h-[500px]" onresize="responsiveFont()">
+            <div class="xl:w-[1200px] xl:h-[400px] w-[350px] h-[300px] pt-5">
                 <canvas id="myChart"></canvas>
             </div>
             <div>
@@ -119,10 +115,5 @@ const responsiveFont = () => {
 </template>
  
 <style scoped>
-@media only screen and (max-width: 700px) {
-    .chartBox {
-        width: 90%;
-        height: 45%;
-    }
-}
+
 </style>
