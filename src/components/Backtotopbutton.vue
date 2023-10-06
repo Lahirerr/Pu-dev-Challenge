@@ -1,13 +1,9 @@
 <script setup>
-import { ref } from 'vue';
 
 const props = defineProps({
   isNotFirstSection: Boolean,
 });
 
-const refs = {
-  sections: ref(),
-};
 
 const backtoTop = () => {
   if (props.isNotFirstSection) {

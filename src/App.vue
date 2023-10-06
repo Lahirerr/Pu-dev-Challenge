@@ -7,8 +7,7 @@ import Thirdsection from './components/Thirdsection.vue';
 import Footerpage from './components/Footerpage.vue';
 
 const isNotFirstSection = ref(false);
-
-
+const isThirdSection = ref(false);
 
 const handleScroll = () => {
   const sections = document.querySelector('.sections');
@@ -17,6 +16,7 @@ const handleScroll = () => {
     isNotFirstSection.value = sectionRect.top < window.innerHeight / 2;
   }
 };
+
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
@@ -38,8 +38,8 @@ onBeforeUnmount(() => {
     <div class="min-w-full min-h-screen ">
     <Firstsection/>
     <Secondsection class="sections" :isNotFirstSection="isNotFirstSection"/>
-    <Thirdsection class="sections"/>
-    <Footerpage class="sections"/>
+    <Thirdsection/>
+    <Footerpage/>
     <Backtotopbutton :isNotFirstSection="isNotFirstSection"/>
     </div>
     
